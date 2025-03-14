@@ -3,10 +3,10 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace ERP.Web.Migrations
+namespace ERP.Web.Data.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialCreate : Migration
+    public partial class Creacion : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -53,7 +53,6 @@ namespace ERP.Web.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     PersonaId = table.Column<int>(type: "int", nullable: false),
                     Sueldo = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    Nombre = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Puesto = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>

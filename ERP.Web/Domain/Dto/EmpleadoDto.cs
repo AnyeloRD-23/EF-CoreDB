@@ -13,5 +13,6 @@ public class EmpleadoDto
     public int Personaid { get; set; }
     public decimal Sueldo { get; set; }
     internal string Puesto { get; set; } = null!;
+    internal decimal? Bono { get; set; } = 0;
     public PersonaDto DatosPersonales { get; set; } = new PersonaDto();
 }

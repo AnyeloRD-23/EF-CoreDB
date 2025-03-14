@@ -24,7 +24,7 @@ public class EmpleadoService : IEmpleadoService
     public async Task<List<EmpleadoDto>> Consultar(string filtro)
     {
         return await _context.Empleados
-            .Where(e => e.Nombre.Contains(filtro))
+            .Where(e => e.DatosPersonales.Nombre.Contains(filtro))
             .Select(e => new EmpleadoDto
             {
                 Id = e.Id,
@@ -42,17 +42,13 @@ public class EmpleadoService : IEmpleadoService
 
     public async Task<bool> Crear(EmpleadoDto request)
     {
-        var empleado = new Empleado
-        {
-            PersonaId = request.Personaid,
-            Sueldo = request.Sueldo,
-            Puesto = request.Puesto,
-            DatosPersonales = new Persona
-            {
-                Nombre = request.DatosPersonales.Nombre,
-                FechaDeNacimiento = request.DatosPersonales.FechaDeNacimiento
-            }
-        };
+        var empleado = Empleado.Create(
+            request.DatosPersonales.Nombre,
+            request.DatosPersonales.FechaDeNacimiento,
+            request.Sueldo,
+            request.Puesto,
+            request.Bono
+            );
 
         _context.Empleados.Add(empleado);
         await _context.SaveChangesAsync();
@@ -80,7 +76,7 @@ public class EmpleadoService : IEmpleadoService
             return false;
         }
 
-        empleado.Nombre = request.DatosPersonales.Nombre;
+        empleado.DatosPersonales.Nombre = request.DatosPersonales.Nombre;
         empleado.Sueldo = request.Sueldo;
         empleado.Puesto = request.Puesto;
         empleado.DatosPersonales.Nombre = request.DatosPersonales.Nombre;

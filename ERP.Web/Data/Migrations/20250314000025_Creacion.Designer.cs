@@ -9,11 +9,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
 
-namespace ERP.Web.Migrations
+namespace ERP.Web.Data.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20250311221214_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20250314000025_Creacion")]
+    partial class Creacion
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -53,10 +53,6 @@ namespace ERP.Web.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Nombre")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("PersonaId")
                         .HasColumnType("int");

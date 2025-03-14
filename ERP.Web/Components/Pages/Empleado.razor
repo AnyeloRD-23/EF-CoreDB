@@ -34,6 +34,14 @@
                         <input class="form-control" type="text" @bind="Request.Puesto" />
                     </div>
                 </div>
+
+                <div class="col">
+                    <div class="mt-1 form-group">
+                        <label class="form-label">bono</label>
+                        <input class="form-control" type="text" @bind="Request.Bono" />
+                    </div>
+                </div>
+
             </div>
         </div>
         <div class="card-footer">
@@ -70,6 +78,7 @@ else
                     <th>@(item.DatosPersonales.FechaDeNacimiento?.ToString("dd/MM/yyyy") ?? "N/A")</th>
                     <th>@item.Sueldo.ToString("N2")</th>
                     <th>@item.Puesto</th>
+                    <th>@item.Bono</th>
                 </tr>
             }
         </tbody>

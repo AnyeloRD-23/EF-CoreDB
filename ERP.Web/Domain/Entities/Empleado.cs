@@ -11,7 +11,8 @@ public class Empleado
     public int PersonaId { get; set; }
     [Column(TypeName = "decimal(18, 2)")]
     public decimal Sueldo { get; set; }
-    public string Nombre { get; set; } = null!;
+    [Column(TypeName = "decimal(18, 2)")]
+    public decimal? Bono { get; set; }
     public string Puesto { get; set; } = null!;
 
     [ForeignKey(nameof(PersonaId))]
@@ -21,12 +22,13 @@ public class Empleado
         string nombre,
         DateTime? fechaNacimiento,
         decimal sueldo,
-        string puesto)
+        string puesto,
+        decimal? bono = 0)
     => new()
     {
-        Nombre = nombre,
         Sueldo = sueldo,
         Puesto = puesto,
+        Bono = bono,
         DatosPersonales = Persona.Create(nombre, fechaNacimiento)
     };
 }
